@@ -24,6 +24,12 @@ public class Player {
                 }
             }
             var myHoleCards = me.get("hole_cards").getAsJsonArray();
+            JsonElement myFirstHoleCard = myHoleCards.get(0);
+            JsonElement mySecondHoleCard = myHoleCards.get(1);
+            String myFirstHoleCardRank = myFirstHoleCard.getAsJsonObject().get("rank").getAsString();
+            String mySecondHoleCardRank = mySecondHoleCard.getAsJsonObject().get("rank").getAsString();
+
+
 
         } catch (Exception e) {
 
