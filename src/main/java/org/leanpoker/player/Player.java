@@ -2,14 +2,22 @@ package org.leanpoker.player;
 
 import com.google.gson.JsonElement;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Player {
 
     static final String VERSION = "Default Java folding player";
 
+
     public static int betRequest(JsonElement request) {
         try {
+            var requestobject = request.getAsJsonObject();
+            List<String> players = new ArrayList<String>();
+
+//            String holeCards = requestobject.get(String "hole_cards");
+
 
         } catch (Exception e) {
 
