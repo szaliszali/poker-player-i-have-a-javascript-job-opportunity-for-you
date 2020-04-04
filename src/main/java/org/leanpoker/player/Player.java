@@ -16,6 +16,8 @@ public class Player {
         try {
             var requestobject = request.getAsJsonObject();
             var players = requestobject.get("players").getAsJsonArray();
+
+            int currentBuyIn = requestobject.get("current_buy_in").getAsInt();
             JsonObject me = null;
             for (JsonElement player : players) {
                 var playerobject = player.getAsJsonObject();
@@ -23,6 +25,7 @@ public class Player {
                     me = playerobject;
                 }
             }
+            int myPreviousBet = me.get("bet").getAsInt();
             var myHoleCards = me.get("hole_cards").getAsJsonArray();
             JsonElement myFirstHoleCard = myHoleCards.get(0);
             JsonElement mySecondHoleCard = myHoleCards.get(1);
@@ -39,6 +42,8 @@ public class Player {
             if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank)
                     || myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
                 return 1000;
+
+//                current_buy_in - players[in_action][bet]
             }
 
             return 0;
