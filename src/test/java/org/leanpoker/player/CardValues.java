@@ -21,7 +21,7 @@ public class CardValues {
 
     @Test
     public void TwoPair() {
-        var cards=new LinkedList<Card>();
+        var cards = new LinkedList<Card>();
         cards.add(new Card("A", "x"));
         cards.add(new Card("A", "y"));
         cards.add(new Card("2", "z"));
@@ -33,7 +33,7 @@ public class CardValues {
 
     @Test
     public void FullHouse() {
-        var cards=new LinkedList<Card>();
+        var cards = new LinkedList<Card>();
         cards.add(new Card("A", "x"));
         cards.add(new Card("A", "y"));
         cards.add(new Card("2", "z"));
