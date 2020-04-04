@@ -73,6 +73,7 @@ public class Player {
             return 0;
 
         } catch (Exception e) {
+            System.err.println("EXCEPTION: " +e.toString());
             return 0;
         }
 
