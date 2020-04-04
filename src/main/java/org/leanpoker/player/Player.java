@@ -11,7 +11,6 @@ public class Player {
 
     static final String VERSION = "Default Java folding player";
 
-
     public static int betRequest(JsonElement request) {
         try {
             var gameState = new GameState(request);
@@ -41,7 +40,7 @@ public class Player {
                 int[] maxSameRanks = fullHand.maxSameRanks();
                 int max1 = maxSameRanks[0];
                 int max2 = maxSameRanks[1];
-                if (max1 >= 4 || max1 == 3 && max2 == 2) {
+                if (max1 >= 4 || max1 == 3 && max2 == 2 || fullHand.isFlush()) {
                     return 1000;
                 } else if (max1 == 3) {
                     int bet = currentBuyIn-myPreviousBet;
@@ -68,7 +67,7 @@ public class Player {
             return 0;
 
         } catch (Exception e) {
-            return 1000;
+            return 0;
         }
 
     }
