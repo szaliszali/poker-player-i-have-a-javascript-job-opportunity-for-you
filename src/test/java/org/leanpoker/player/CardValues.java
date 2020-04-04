@@ -42,4 +42,17 @@ public class CardValues {
         assertFalse(new Hand(cards).isTwoPairs());
         assertTrue(new Hand(cards).isFullHouse());
     }
+
+    @Test
+    public void Flush() {
+        var cards = new LinkedList<Card>();
+        cards.add(new Card("A", "x"));
+        cards.add(new Card("A", "x"));
+        cards.add(new Card("2", "x"));
+        cards.add(new Card("2", "x"));
+        cards.add(new Card("2", "y"));
+        assertFalse(new Hand(cards).isFlush());
+        cards.add(new Card("2", "x"));
+        assertTrue(new Hand(cards).isFlush());
+    }
 }

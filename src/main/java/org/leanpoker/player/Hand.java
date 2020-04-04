@@ -25,8 +25,17 @@ public class Hand {
         return rc.values().stream().filter(c -> c == 2).count() == 2;
     }
 
+    public boolean isFlush() {
+        var sc = suitCounts();
+        return sc.values().stream().filter(c -> c >= 5).count() >= 1;
+    }
+
     private Map<String, Long> rankCounts() {
         return cards.stream().collect(Collectors.groupingBy(card -> card.rank, Collectors.counting()));
+    }
+
+    private Map<String, Long> suitCounts() {
+        return cards.stream().collect(Collectors.groupingBy(card -> card.suit, Collectors.counting()));
     }
 
     public int[] maxSameRanks(List<Card> cards) {
