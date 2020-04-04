@@ -29,4 +29,8 @@ public class Card {
                 return Integer.parseInt(rank);
         }
     }
+
+    public boolean isFigure () {
+        return (rank.equals("A") || rank.equals("K") || rank.equals("Q") || rank.equals("J"));
+    }
 }
