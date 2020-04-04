@@ -99,5 +99,29 @@ public class Hand {
         return maximums;
     }
 
+    public int analysePair() {
+
+        Map<Integer, Integer> cardMap = new HashMap<>();
+        for (Card card : cards) {
+            int rank = card.rankValue();
+            if (cardMap.containsKey(rank)) {
+                cardMap.put(rank, cardMap.get(rank));
+            } else {
+                cardMap.put(rank, 1);
+            }
+        }
+        int maxCount = 0;
+        int maxRank = 0;
+        for (Map.Entry<Integer, Integer> entry : cardMap.entrySet()) {
+            Integer rank = entry.getKey();
+            Integer count = entry.getValue();
+            if (count > maxCount) {
+                maxRank = rank;
+                maxCount = count;
+            }
+        }
+        return maxRank;
+    }
+
 
 }

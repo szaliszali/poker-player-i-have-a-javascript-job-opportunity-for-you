@@ -46,6 +46,7 @@ public class Player {
                     }
                     return bet;
                 } else if (max1 == 2) {
+
                     return currentBuyIn - myPreviousBet;
                 }
                 return 0;
