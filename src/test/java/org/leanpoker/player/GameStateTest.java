@@ -120,4 +120,11 @@ public class GameStateTest {
         assertEquals(2, gameState.holeCards.size());
         assertEquals(5, gameState.allCards.size());
     }
+
+    @Test
+    public void communityCards() {
+        var parsed = new JsonParser().parse(sampleData);
+        var gameState = new GameState(parsed);
+        assertEquals(3, gameState.communityCards.size());
+    }
 }

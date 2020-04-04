@@ -8,10 +8,12 @@ import java.util.List;
 
 public class GameState {
     public final List<Card> holeCards;
+    public final List<Card> communityCards;
     public final List<Card> allCards;
 
     public GameState(JsonElement jsonElement) {
         holeCards = new LinkedList<>();
+        communityCards = new LinkedList<>();
         allCards = new LinkedList<>();
 
         var me = me(jsonElement);
@@ -22,6 +24,7 @@ public class GameState {
         }
         var communityCards = jsonElement.getAsJsonObject().get("community_cards").getAsJsonArray();
         for (var card : communityCards) {
+            this.communityCards.add(new Card(card));
             allCards.add(new Card(card));
         }
     }
