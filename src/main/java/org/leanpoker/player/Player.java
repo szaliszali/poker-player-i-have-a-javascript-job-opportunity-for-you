@@ -28,9 +28,19 @@ public class Player {
             JsonElement mySecondHoleCard = myHoleCards.get(1);
             String myFirstHoleCardRank = myFirstHoleCard.getAsJsonObject().get("rank").getAsString();
             String mySecondHoleCardRank = mySecondHoleCard.getAsJsonObject().get("rank").getAsString();
-            if (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank) || myFirstHoleCardRank.equals(mySecondHoleCardRank)) {
+
+            var communityCards = requestobject.get("players").getAsJsonArray();
+            int numberOfCommunityCards = communityCards.size();
+
+            if (numberOfCommunityCards > 0) {
                 return 1000;
             }
+
+            if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank)
+                    || myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
+                return 1000;
+            }
+
             return 0;
 
         } catch (Exception e) {
