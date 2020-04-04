@@ -132,6 +132,6 @@ public class GameStateTest {
     public void bet() {
         var parsed = new JsonParser().parse(sampleData);
         var gameState = new GameState(parsed);
-        assertEquals(3, gameState.bet);
+        assertEquals(80, gameState.bet);
     }
 }
