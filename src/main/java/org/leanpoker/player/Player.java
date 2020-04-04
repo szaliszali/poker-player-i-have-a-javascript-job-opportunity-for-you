@@ -35,9 +35,6 @@ public class Player {
             var communityCards = requestobject.get("players").getAsJsonArray();
             int numberOfCommunityCards = communityCards.size();
             List<Card> totalHand = gameState.allCards;
-            for (JsonElement communityCard : communityCards) {
-                totalHand.add(new Card(communityCard));
-            }
 
             if (numberOfCommunityCards > 0) {
                 int maxSameRanks = Hand.maxSameRanks(totalHand);
