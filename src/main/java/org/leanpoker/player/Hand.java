@@ -30,10 +30,30 @@ public class Hand {
     }
 
     private boolean isLowStraight() {
+        for (int i = 1; i <= 10; ++i) {
+            var isStraight = true;
+            for (int j = 0; j < 5; ++j) {
+                int finalI = i;
+                int finalJ = j;
+                if (cards.stream().filter(c -> c.rankValueForLowStraight() == finalI + finalJ).count() < 1)
+                    isStraight = false;
+            }
+            if (isStraight) return true;
+        }
         return false;
     }
 
     private boolean isHighStraight() {
+        for (int i = 1; i <= 10; ++i) {
+            var isStraight = true;
+            for (int j = 0; j < 5; ++j) {
+                int finalI = i;
+                int finalJ = j;
+                if (cards.stream().filter(c -> c.rankValue() == finalI + finalJ).count() < 1)
+                    isStraight = false;
+            }
+            if (isStraight) return true;
+        }
         return false;
     }
 

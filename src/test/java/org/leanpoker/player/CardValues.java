@@ -69,4 +69,17 @@ public class CardValues {
         cards.add(new Card("10", "y"));
         assertTrue(new Hand(cards).isStraight());
     }
+
+    @Test
+    public void LowStraight() {
+        var cards = new LinkedList<Card>();
+        cards.add(new Card("A", "x"));
+        cards.add(new Card("2", "x"));
+        cards.add(new Card("3", "x"));
+        cards.add(new Card("4", "x"));
+        cards.add(new Card("4", "y"));
+        assertFalse(new Hand(cards).isStraight());
+        cards.add(new Card("5", "y"));
+        assertTrue(new Hand(cards).isStraight());
+    }
 }
