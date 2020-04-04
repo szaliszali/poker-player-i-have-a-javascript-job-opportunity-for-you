@@ -14,6 +14,8 @@ public class Player {
 
     public static int betRequest(JsonElement request) {
         try {
+            var gameState = new GameState(request);
+            
             var requestobject = request.getAsJsonObject();
             var players = requestobject.get("players").getAsJsonArray();
 
@@ -26,17 +28,13 @@ public class Player {
                 }
             }
             int myPreviousBet = me.get("bet").getAsInt();
-            var myHoleCards = me.get("hole_cards").getAsJsonArray();
-            JsonElement myFirstHoleCard = myHoleCards.get(0);
-            JsonElement mySecondHoleCard = myHoleCards.get(1);
-            String myFirstHoleCardRank = myFirstHoleCard.getAsJsonObject().get("rank").getAsString();
-            String mySecondHoleCardRank = mySecondHoleCard.getAsJsonObject().get("rank").getAsString();
+            var myHoleCards = gameState.holeCards;
+            String myFirstHoleCardRank = myHoleCards.get(0).rank;
+            String mySecondHoleCardRank = myHoleCards.get(1).rank;
 
             var communityCards = requestobject.get("players").getAsJsonArray();
             int numberOfCommunityCards = communityCards.size();
-            List<Card> totalHand = new ArrayList<>();
-            totalHand.add(new Card(myFirstHoleCard));
-            totalHand.add(new Card(mySecondHoleCard));
+            List<Card> totalHand = gameState.allCards;
             for (JsonElement communityCard : communityCards) {
                 totalHand.add(new Card(communityCard));
             }
