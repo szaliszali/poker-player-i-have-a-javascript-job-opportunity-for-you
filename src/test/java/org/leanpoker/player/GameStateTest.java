@@ -127,4 +127,11 @@ public class GameStateTest {
         var gameState = new GameState(parsed);
         assertEquals(3, gameState.communityCards.size());
     }
+
+    @Test
+    public void bet() {
+        var parsed = new JsonParser().parse(sampleData);
+        var gameState = new GameState(parsed);
+        assertEquals(3, gameState.bet);
+    }
 }

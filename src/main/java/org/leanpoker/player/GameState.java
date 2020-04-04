@@ -11,12 +11,15 @@ public class GameState {
     public final List<Card> communityCards;
     public final List<Card> allCards;
 
+    public final int bet;
+
     public GameState(JsonElement jsonElement) {
         holeCards = new LinkedList<>();
         communityCards = new LinkedList<>();
         allCards = new LinkedList<>();
 
         var me = me(jsonElement);
+        bet = me.get("bet").getAsInt();
         var myHoleCards = me.get("hole_cards").getAsJsonArray();
         for (var card : myHoleCards) {
             holeCards.add(new Card(card));
