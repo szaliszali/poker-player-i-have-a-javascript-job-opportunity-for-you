@@ -46,8 +46,12 @@ public class Player {
                     }
                     return bet;
                 } else if (max1 == 2) {
-
-                    return currentBuyIn - myPreviousBet;
+                    int rank = fullHand.analysePair();
+                    int bet = currentBuyIn-myPreviousBet;
+                    if (bet < rank * 10) {
+                        bet = rank * 10;
+                    }
+                    return bet;
                 }
                 return 0;
             }
