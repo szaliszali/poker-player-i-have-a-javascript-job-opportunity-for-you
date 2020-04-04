@@ -41,8 +41,7 @@ public class Player {
 
             if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank)
                     || myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
-                return 1000;
-
+                return currentBuyIn-myPreviousBet;
 //                current_buy_in - players[in_action][bet]
             }
 
