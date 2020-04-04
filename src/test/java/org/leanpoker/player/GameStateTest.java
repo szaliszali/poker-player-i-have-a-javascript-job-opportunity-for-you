@@ -19,7 +19,7 @@ public class GameStateTest {
     public static final String clubs6 = "        {\n" +
             "            \"rank\": \"6\",\n" +
             "            \"suit\": \"clubs\"\n" +
-            "        }\"";
+            "        }";
     final String sampleData = "{\n" +
             "    \"tournament_id\":\"550d1d68cd7bd10003000003\",     // Id of the current tournament\n" +
             "\n" +
@@ -100,7 +100,7 @@ public class GameStateTest {
             "    \"community_cards\": [                            // Finally the array of community cards.\n" +
             spades4 + ",\n" +
             heartsA + ",\n" +
-            clubs6 + "+\"\n" +
+            clubs6 + "\n" +
             "    ]\n" +
             "}";
 
@@ -111,5 +111,13 @@ public class GameStateTest {
         assertEquals("A", card.rank);
         assertEquals("hearts", card.suit);
         assertEquals(14, card.rankValue());
+    }
+
+    @Test
+    public void holeCards() {
+        var parsed = new JsonParser().parse(sampleData);
+        var gameState = new GameState(parsed);
+        assertEquals(2, gameState.holeCards.size());
+        assertEquals(5, gameState.allCards.size());
     }
 }
