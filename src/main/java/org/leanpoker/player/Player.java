@@ -15,9 +15,7 @@ public class Player {
         try {
             var gameState = new GameState(request);
             
-            var requestobject = request.getAsJsonObject();
-
-            int currentBuyIn = requestobject.get("current_buy_in").getAsInt();
+            int currentBuyIn = gameState.currentBuyIn;
             int myPreviousBet = gameState.bet;
             var myHoleCards = gameState.holeCards;
             String myFirstHoleCardRank = myHoleCards.get(0).rank;
