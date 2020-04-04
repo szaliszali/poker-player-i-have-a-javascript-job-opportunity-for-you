@@ -3,6 +3,8 @@ package org.leanpoker.player;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Hand {
 
@@ -10,6 +12,21 @@ public class Hand {
 
     public Hand(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public boolean isFullHouse() {
+        var rc = rankCounts();
+        return rc.values().stream().filter(c -> c == 3).count() == 1 &&
+                rc.values().stream().filter(c -> c == 2).count() == 1;
+    }
+
+    public boolean isTwoPairs() {
+        var rc = rankCounts();
+        return rc.values().stream().filter(c -> c == 2).count() == 2;
+    }
+
+    private Map<String, Long> rankCounts() {
+        return cards.stream().collect(Collectors.groupingBy(card -> card.rank, Collectors.counting()));
     }
 
     public int[] maxSameRanks(List<Card> cards) {
