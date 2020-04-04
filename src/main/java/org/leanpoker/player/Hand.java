@@ -25,6 +25,18 @@ public class Hand {
         return rc.values().stream().filter(c -> c == 2).count() == 2;
     }
 
+    public boolean isStraight() {
+        return isLowStraight() || isHighStraight();
+    }
+
+    private boolean isLowStraight() {
+        return false;
+    }
+
+    private boolean isHighStraight() {
+        return false;
+    }
+
     public boolean isFlush() {
         var sc = suitCounts();
         return sc.values().stream().filter(c -> c >= 5).count() >= 1;
