@@ -1,6 +1,7 @@
 package org.leanpoker.player;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,15 @@ public class Player {
     public static int betRequest(JsonElement request) {
         try {
             var requestobject = request.getAsJsonObject();
-            List<String> players = new ArrayList<String>();
-
-//            String holeCards = requestobject.get(String "hole_cards");
-
+            var players = requestobject.get("players").getAsJsonArray();
+            JsonObject me = null;
+            for (JsonElement player : players) {
+                var playerobject = player.getAsJsonObject();
+                if (playerobject.get("name").getAsString().equals("I have a JavaScript job opportunity for you")) {
+                    me = playerobject;
+                }
+            }
+            var myHoleCards = me.get("hole_cards").getAsJsonArray();
 
         } catch (Exception e) {
 
