@@ -11,6 +11,11 @@ public class Card {
         this.suit = jsonElement.getAsJsonObject().get("suit").getAsString();
     }
 
+    public Card(String rank, String suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
+
     public int rankValue() {
         return rankValue(this.rank);
     }
