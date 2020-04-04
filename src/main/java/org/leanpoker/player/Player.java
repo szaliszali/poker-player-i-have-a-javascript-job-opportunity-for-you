@@ -16,23 +16,14 @@ public class Player {
             var gameState = new GameState(request);
             
             var requestobject = request.getAsJsonObject();
-            var players = requestobject.get("players").getAsJsonArray();
 
             int currentBuyIn = requestobject.get("current_buy_in").getAsInt();
-            JsonObject me = null;
-            for (JsonElement player : players) {
-                var playerobject = player.getAsJsonObject();
-                if (playerobject.get("name").getAsString().equals("I have a JavaScript job opportunity for you")) {
-                    me = playerobject;
-                }
-            }
-            int myPreviousBet = me.get("bet").getAsInt();
+            int myPreviousBet = gameState.bet;
             var myHoleCards = gameState.holeCards;
             String myFirstHoleCardRank = myHoleCards.get(0).rank;
             String mySecondHoleCardRank = myHoleCards.get(1).rank;
 
-            var communityCards = requestobject.get("players").getAsJsonArray();
-            int numberOfCommunityCards = communityCards.size();
+            int numberOfCommunityCards = gameState.communityCards.size();
             List<Card> allCards = gameState.allCards;
             Hand fullHand = new Hand(allCards);
 
