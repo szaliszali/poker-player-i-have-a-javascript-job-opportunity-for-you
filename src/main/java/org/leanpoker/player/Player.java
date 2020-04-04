@@ -41,12 +41,18 @@ public class Player {
                 int[] maxSameRanks = fullHand.maxSameRanks();
                 int max1 = maxSameRanks[0];
                 int max2 = maxSameRanks[1];
-                if (max1 >= 4) {
+                if (max1 >= 4 || max1 == 3 && max2 == 2) {
                     return 1000;
                 } else if (max1 == 3) {
                     int bet = currentBuyIn-myPreviousBet;
                     if (bet < 300) {
                         bet = 300;
+                    }
+                    return bet;
+                } else if (max1 == 2 && max2 == 2) {
+                    int bet = currentBuyIn-myPreviousBet;
+                    if (bet < 200) {
+                        bet = 200;
                     }
                     return bet;
                 } else if (max1 == 2) {
