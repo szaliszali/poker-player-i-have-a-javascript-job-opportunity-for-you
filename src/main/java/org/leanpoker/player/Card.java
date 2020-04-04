@@ -30,7 +30,7 @@ public class Card {
         }
     }
 
-    public boolean isFigure () {
+    public boolean isFigure() {
         return (rank.equals("A") || rank.equals("K") || rank.equals("Q") || rank.equals("J"));
     }
 }
