@@ -51,6 +51,18 @@ public class Player {
                 return 0;
             }
 
+            if (numberOfCommunityCards == 0 && myFirstHoleCardRank.equals("A") && myFirstHoleCardRank.equals(mySecondHoleCardRank)) {
+                return 400;
+            }
+
+            if (numberOfCommunityCards == 0 && myFirstHoleCardRank.equals("K") && myFirstHoleCardRank.equals(mySecondHoleCardRank)) {
+                return 300;
+            }
+
+            if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) && myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
+                return 200;
+            }
+
             if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank)
                     || myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
                 return currentBuyIn-myPreviousBet;
