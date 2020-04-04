@@ -28,13 +28,19 @@ public class Player {
             JsonElement mySecondHoleCard = myHoleCards.get(1);
             String myFirstHoleCardRank = myFirstHoleCard.getAsJsonObject().get("rank").getAsString();
             String mySecondHoleCardRank = mySecondHoleCard.getAsJsonObject().get("rank").getAsString();
-
-
+            if (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank) || myFirstHoleCardRank.equals(mySecondHoleCardRank)) {
+                return 1000;
+            }
+            return 0;
 
         } catch (Exception e) {
-
+            return 1000;
         }
-        return 1000;
+
+    }
+
+    public static boolean isTheCardFigure (String rank) {
+        return (rank.equals("A") || rank.equals("K") || rank.equals("Q") || rank.equals("J"));
     }
 
     public static void showdown(JsonElement game) {
