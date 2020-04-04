@@ -99,7 +99,7 @@ public class Hand {
         return maximums;
     }
 
-    public int analysePair() {
+    public int analyseRank() {
 
         Map<Integer, Integer> cardMap = new HashMap<>();
         for (Card card : cards) {

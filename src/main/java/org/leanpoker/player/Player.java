@@ -29,12 +29,16 @@ public class Player {
                 int[] maxSameRanks = fullHand.maxSameRanks();
                 int max1 = maxSameRanks[0];
                 int max2 = maxSameRanks[1];
-                if (max1 >= 4 || max1 == 3 && max2 == 2 || fullHand.isFlush()) {
+                if (max1 >= 4 || max1 == 3 && max2 == 2 || fullHand.isFlush() || fullHand.isStraight()) {
                     return 1000;
                 } else if (max1 == 3) {
                     int bet = currentBuyIn-myPreviousBet;
-                    if (bet < 300) {
-                        bet = 300;
+                    int rank = fullHand.analyseRank();
+                    if (bet < rank * 20) {
+                        bet = rank * 20;
+                    }
+                    if (rank == 14) {
+                        bet = 400;
                     }
                     return bet;
                 } else if (max1 == 2 && max2 == 2) {
@@ -44,10 +48,13 @@ public class Player {
                     }
                     return bet;
                 } else if (max1 == 2) {
-                    int rank = fullHand.analysePair();
+                    int rank = fullHand.analyseRank();
                     int bet = currentBuyIn-myPreviousBet;
                     if (bet < rank * 10) {
                         bet = rank * 10;
+                    }
+                    if (rank == 14) {
+                        bet = 200;
                     }
                     return bet;
                 }
