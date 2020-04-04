@@ -34,19 +34,22 @@ public class Player {
 
             var communityCards = requestobject.get("players").getAsJsonArray();
             int numberOfCommunityCards = communityCards.size();
-            List<Card> totalHand = gameState.allCards;
+            List<Card> allCards = gameState.allCards;
+            Hand fullHand = new Hand(allCards);
 
             if (numberOfCommunityCards > 0) {
-                int maxSameRanks = Hand.maxSameRanks(totalHand);
-                if (maxSameRanks >= 4) {
+                int[] maxSameRanks = fullHand.maxSameRanks();
+                int max1 = maxSameRanks[0];
+                int max2 = maxSameRanks[1];
+                if (max1 >= 4) {
                     return 1000;
-                } else if (maxSameRanks == 3) {
+                } else if (max1 == 3) {
                     int bet = currentBuyIn-myPreviousBet;
                     if (bet < 300) {
                         bet = 300;
                     }
                     return bet;
-                } else if (maxSameRanks == 2) {
+                } else if (max1 == 2) {
                     return currentBuyIn - myPreviousBet;
                 }
                 return 0;
@@ -55,7 +58,6 @@ public class Player {
             if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank)
                     || myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
                 return currentBuyIn-myPreviousBet;
-//                current_buy_in - players[in_action][bet]
             }
             return 0;
 

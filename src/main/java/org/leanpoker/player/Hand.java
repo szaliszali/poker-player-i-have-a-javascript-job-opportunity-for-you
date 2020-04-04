@@ -12,11 +12,12 @@ public class Hand {
         this.cards = cards;
     }
 
-    public static int maxSameRanks(List<Card> cards) {
+    public int[] maxSameRanks(List<Card> cards) {
         return new Hand(cards).maxSameRanks();
     }
 
-    public int maxSameRanks() {
+    public int[] maxSameRanks() {
+        int[] maximums = new int[2];
         Map<Integer, Integer> cardMap = new HashMap<>();
         for (Card card : cards) {
             int rank = card.rankValue();
@@ -27,13 +28,17 @@ public class Hand {
             }
         }
         int maxCount = 0;
+        int secondMax = 0;
         for (Map.Entry<Integer, Integer> entry : cardMap.entrySet()) {
             Integer count = entry.getValue();
-            if (count > maxCount) {
+            if (count >= maxCount) {
+                secondMax = maxCount;
                 maxCount = count;
             }
         }
-        return maxCount;
+        maximums[0] = maxCount;
+        maximums[1] = secondMax;
+        return maximums;
     }
 
 
