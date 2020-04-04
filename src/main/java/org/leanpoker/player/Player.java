@@ -61,7 +61,8 @@ public class Player {
                 return 0;
             }
 
-            if (numberOfCommunityCards == 0 && myFirstHoleCardRank.equals("A") && myFirstHoleCardRank.equals(mySecondHoleCardRank)) {
+            if (numberOfCommunityCards == 0 && myFirstHoleCardRank.equals("A") && myFirstHoleCardRank.equals(mySecondHoleCardRank) ||
+                    myFirstHoleCardRank.equals(mySecondHoleCardRank)) {
                 return 400;
             }
 
@@ -74,7 +75,7 @@ public class Player {
             }
 
             if (numberOfCommunityCards == 0 && (isTheCardFigure(myFirstHoleCardRank) || isTheCardFigure(mySecondHoleCardRank)
-                    || myFirstHoleCardRank.equals(mySecondHoleCardRank))) {
+                   )) {
                 return currentBuyIn-myPreviousBet;
             }
             return 0;
