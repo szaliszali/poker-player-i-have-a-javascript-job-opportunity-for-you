@@ -1,6 +1,20 @@
 package org.leanpoker.player;
 
+import com.google.gson.JsonElement;
+
 public class Card {
+    public final String rank;
+    public final String suit;
+
+    public Card(JsonElement jsonElement) {
+        this.rank = jsonElement.getAsJsonObject().get("rank").getAsString();
+        this.suit = jsonElement.getAsJsonObject().get("suit").getAsString();
+    }
+
+    public int rankValue() {
+        return rankValue(this.rank);
+    }
+
     public static int rankValue(String rank) {
         switch (rank) {
             case "J":
