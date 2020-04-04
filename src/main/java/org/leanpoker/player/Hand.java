@@ -8,9 +8,17 @@ public class Hand {
 
     public List<Card> cards;
 
-    public static int maxSameRanks(List<Card> hand) {
+    public Hand(List<Card> cards) {
+        this.cards = cards;
+    }
+
+    public static int maxSameRanks(List<Card> cards) {
+        return new Hand(cards).maxSameRanks();
+    }
+
+    public int maxSameRanks() {
         Map<Integer, Integer> cardMap = new HashMap<>();
-        for (Card card : hand) {
+        for (Card card : cards) {
             int rank = card.rankValue();
             if (cardMap.containsKey(rank)) {
                 cardMap.put(rank, cardMap.get(rank));
