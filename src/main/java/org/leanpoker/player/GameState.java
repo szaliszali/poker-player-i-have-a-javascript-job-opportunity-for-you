@@ -12,6 +12,7 @@ public class GameState {
     public final List<Card> allCards;
 
     public final int bet;
+    public final int currentBuyIn;
 
     public GameState(JsonElement jsonElement) {
         holeCards = new LinkedList<>();
@@ -19,13 +20,15 @@ public class GameState {
         allCards = new LinkedList<>();
 
         var me = me(jsonElement);
+        var requestObject=jsonElement.getAsJsonObject();
+        currentBuyIn = requestObject.get("current_buy_in").getAsInt();
         bet = me.get("bet").getAsInt();
         var myHoleCards = me.get("hole_cards").getAsJsonArray();
         for (var card : myHoleCards) {
             holeCards.add(new Card(card));
             allCards.add(new Card(card));
         }
-        var communityCards = jsonElement.getAsJsonObject().get("community_cards").getAsJsonArray();
+        var communityCards = requestObject.get("community_cards").getAsJsonArray();
         for (var card : communityCards) {
             this.communityCards.add(new Card(card));
             allCards.add(new Card(card));

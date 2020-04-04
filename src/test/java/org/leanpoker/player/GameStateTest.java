@@ -134,4 +134,11 @@ public class GameStateTest {
         var gameState = new GameState(parsed);
         assertEquals(80, gameState.bet);
     }
+
+    @Test
+    public void currentBuyIn() {
+        var parsed = new JsonParser().parse(sampleData);
+        var gameState = new GameState(parsed);
+        assertEquals(320, gameState.currentBuyIn);
+    }
 }
