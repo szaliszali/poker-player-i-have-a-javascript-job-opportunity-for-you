@@ -35,6 +35,10 @@ public class Card {
         }
     }
 
+    public int rankValueForLowStraight() {
+        return rank == "A" ? 1 : rankValue(rank);
+    }
+
     public boolean isFigure() {
         return (rank.equals("A") || rank.equals("K") || rank.equals("Q") || rank.equals("J"));
     }

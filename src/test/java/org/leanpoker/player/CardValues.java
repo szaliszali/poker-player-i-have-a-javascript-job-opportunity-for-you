@@ -17,6 +17,7 @@ public class CardValues {
         Assertions.assertEquals(12, Card.rankValue("Q"));
         Assertions.assertEquals(13, Card.rankValue("K"));
         Assertions.assertEquals(14, Card.rankValue("A"));
+        Assertions.assertEquals(1, new Card("A", "_").rankValueForLowStraight());
     }
 
     @Test
@@ -54,5 +55,18 @@ public class CardValues {
         assertFalse(new Hand(cards).isFlush());
         cards.add(new Card("2", "x"));
         assertTrue(new Hand(cards).isFlush());
+    }
+
+    @Test
+    public void Straight() {
+        var cards = new LinkedList<Card>();
+        cards.add(new Card("A", "x"));
+        cards.add(new Card("K", "x"));
+        cards.add(new Card("Q", "x"));
+        cards.add(new Card("J", "x"));
+        cards.add(new Card("J", "y"));
+        assertFalse(new Hand(cards).isStraight());
+        cards.add(new Card("10", "y"));
+        assertTrue(new Hand(cards).isStraight());
     }
 }
